@@ -122,6 +122,14 @@ count_ <- function(x, vars, wt = NULL, sort = FALSE) {
 #' @rdname tally
 #' @export
 add_tally <- function(x, wt, sort = FALSE) {
+  UseMethod("add_tally")
+}
+
+add_tally.data.frame <- function(x, wt, sort = FALSE) {
+  as.data.frame(add_tally(tbl_df(x), !!enquo(wt), sort))
+}
+
+add_tally.tbl_df <- function(x, wt, sort = FALSE) {
   wt <- enquo(wt)
 
   if (quo_is_missing(wt) && "n" %in% names(x)) {
@@ -155,12 +163,21 @@ add_tally_ <- function(x, wt, sort = FALSE) {
 #' @rdname tally
 #' @export
 add_count <- function(x, ..., wt = NULL, sort = FALSE) {
+  UseMethod("add_count")
+}
+
+add_count.data.frame <- function(x, ..., wt = NULL, sort = FALSE) {
+  as.data.frame(add_count(tbl_df(x), ..., wt = !!enquo(wt), sort = sort))
+}
+
+add_count.tbl_df <- function(x, ..., wt = NULL, sort = FALSE) {
   g <- group_vars(x)
   grouped <- group_by(x, ..., add = TRUE)
 
   out <- add_tally(grouped, wt = !!enquo(wt), sort = sort)
   grouped_df(out, g)
 }
+
 #' @rdname se-deprecated
 #' @export
 add_count_ <- function(x, vars, wt = NULL, sort = FALSE) {
