@@ -125,10 +125,12 @@ add_tally <- function(x, wt, sort = FALSE) {
   UseMethod("add_tally")
 }
 
+#' @export
 add_tally.data.frame <- function(x, wt, sort = FALSE) {
   as.data.frame(add_tally(tbl_df(x), !!enquo(wt), sort))
 }
 
+#' @export
 add_tally.tbl_df <- function(x, wt, sort = FALSE) {
   wt <- enquo(wt)
 
@@ -166,10 +168,12 @@ add_count <- function(x, ..., wt = NULL, sort = FALSE) {
   UseMethod("add_count")
 }
 
+#' @export
 add_count.data.frame <- function(x, ..., wt = NULL, sort = FALSE) {
   as.data.frame(add_count(tbl_df(x), ..., wt = !!enquo(wt), sort = sort))
 }
 
+#' @export
 add_count.tbl_df <- function(x, ..., wt = NULL, sort = FALSE) {
   g <- group_vars(x)
   grouped <- group_by(x, ..., add = TRUE)
