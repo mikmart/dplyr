@@ -59,6 +59,13 @@ test_that("add_count respects and preserves existing groups", {
   expect_groups(res, "g")
 })
 
+test_that("add_count can preserve class", {
+  df <- data.frame(a = c(1, 1, 2, 2, 2))
+
+  out <- df %>% add_count(a)
+  expect_equal(class(out), "data.frame")
+})
+
 
 # tally -------------------------------------------------------------------
 
@@ -103,4 +110,11 @@ test_that("add_tally can be given a weighting variable", {
 
   out <- df %>% group_by(a) %>% add_tally(wt = w + 1)
   expect_equal(out$n, c(4, 4, 12, 12, 12))
+})
+
+test_that("add_tally can preserve class", {
+  df <- data.frame(a = c(1, 1, 2, 2, 2))
+
+  out <- df %>% add_tally()
+  expect_equal(class(out), "data.frame")
 })
