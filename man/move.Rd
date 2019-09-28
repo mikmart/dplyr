@@ -46,9 +46,5 @@ move(iris, Sepal.Length, .after = last_col())
 move(iris, everything(), .before = Sepal.Length)
 }
 \seealso{
-Other single table verbs: \code{\link{arrange}},
-  \code{\link{filter}}, \code{\link{mutate}},
-  \code{\link{select}}, \code{\link{slice}},
-  \code{\link{summarise}}
+\code{\link[=select]{select()}}, which \code{move()} wraps.
 }
-\concept{single table verbs}

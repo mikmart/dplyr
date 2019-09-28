@@ -13,7 +13,7 @@
 #' @param .before,.after A selection for a variable to use as the reference
 #'   location. Exactly one of these arguments must be supplied.
 #' @return An object of the same class as `.data`.
-#' @family single table verbs
+#' @seealso [select()], which `move()` wraps.
 #' @export
 #' @examples
 #' iris <- as_tibble(iris) # so it prints a little nicer
